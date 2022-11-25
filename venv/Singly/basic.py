@@ -121,6 +121,16 @@ class LinkedList:
 
     curr_1.next, curr_2.next = curr_2.next, curr_1.next
 
+  def reverse(self):
+    prev = None 
+    cur = self.head
+    while cur:
+        nxt = cur.next
+        cur.next = prev
+        prev = cur 
+        cur = nxt 
+    self.head = prev
+
 
 
 llist = LinkedList()
@@ -133,10 +143,11 @@ llist.prepend("D")
 llist.append("A")
 llist.printList()
 #llist.deleteNodeVal("T")
-llist.deleteNodePos(3)
-llist.swapNodes("D", "A")
+#llist.deleteNodePos(3)
+#llist.swapNodes("D", "A")
+#llist.printList()
+
+llist.reverse()
 llist.printList()
-
-
 
 print(llist.length(llist.head))
