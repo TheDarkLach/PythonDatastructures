@@ -12,7 +12,7 @@ class LinkedList:
   def __init__(self):
     self.head = None
 
-  def print_list(self):
+  def printList(self):
     list = []
     cur_node = self.head
     while cur_node:
@@ -41,7 +41,7 @@ class LinkedList:
       self.head = new_node
 
   #delete based off value
-  def delete_node_value(self, key):
+  def deleteNodeVal(self, key):
 
     cur_node = self.head
 
@@ -62,7 +62,7 @@ class LinkedList:
     cur_node = None
 
   #delete based off pos
-  def delete_node_pos(self, pos):
+  def deleteNodePos(self, pos):
     if self.head:
       cur_node = self.head
 
@@ -89,6 +89,38 @@ class LinkedList:
       return 0
     return 1 + self.length(node.next)
 
+  def swapNodes(self, key_1, key_2):
+
+    if key_1 == key_2:
+      return
+
+    prev_1 = None
+    curr_1 = self.head
+    while curr_1 and curr_1.data != key_1:
+      prev_1 = curr_1
+      curr_1 = curr_1.next
+
+    prev_2 = None
+    curr_2 = self.head
+    while curr_2 and curr_2.data != key_2:
+      prev_2 = curr_2
+      curr_2 = curr_2.next
+
+    if not curr_1 or not curr_2:
+      return
+
+    if prev_1:
+      prev_1.next = curr_2
+    else:
+      self.head = curr_2
+
+    if prev_2:
+      prev_2.next = curr_1
+    else:
+      self.head = curr_1
+
+    curr_1.next, curr_2.next = curr_2.next, curr_1.next
+
 
 
 llist = LinkedList()
@@ -98,9 +130,9 @@ for i in range(10):
 
 
 llist.prepend("D")
-llist.print_list()
-llist.delete_node_value("T")
-llist.delete_node_pos(0)
-llist.print_list()
+llist.printList()
+llist.deleteNodeVal("T")
+llist.deleteNodePos(0)
+llist.printList()
 
 print(llist.length(llist.head))
