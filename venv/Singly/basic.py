@@ -130,9 +130,13 @@ for i in range(10):
 
 
 llist.prepend("D")
+llist.append("A")
 llist.printList()
-llist.deleteNodeVal("T")
-llist.deleteNodePos(0)
+#llist.deleteNodeVal("T")
+llist.deleteNodePos(3)
+llist.swapNodes("D", "A")
 llist.printList()
+
+
 
 print(llist.length(llist.head))
