@@ -8,11 +8,16 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def print_list(self):
+    def printList(self):
+        list = []
         cur_node = self.head
         while cur_node:
-            print(cur_node.data)
+            list.append(cur_node.data)
+            #print(cur_node.data)
             cur_node = cur_node.next
+        print(*list)
+        #visual printing cuz it cool
+        print(str(list).replace(',', ' <-').replace("[","").replace("]",""))
 
     def append(self, data):
         new_node = Node(data)
@@ -26,14 +31,9 @@ class LinkedList:
             last_node = last_node.next
         last_node.next = new_node
 
-    def print_helper(self, node, name):
-        if node is None:
-            print(name + ": None")
-        else:
-            print(name + ":" + node.data)
 
 
-    def merge_sorted(self, llist):
+    def merge(self, llist):
     
         p = self.head 
         q = llist.head
@@ -84,5 +84,5 @@ llist_2.append(4)
 llist_2.append(6)
 llist_2.append(8)
 
-llist_1.merge_sorted(llist_2)
-llist_1.print_list()
+llist_1.merge(llist_2)
+llist_1.printList()

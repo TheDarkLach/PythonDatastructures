@@ -8,18 +8,6 @@ class CircularLinkedList:
     def __init__(self):
         self.head = None
 
-    def prepend(self, data):
-        new_node = Node(data)
-        cur = self.head
-        new_node.next = self.head
-
-        if not self.head:
-            new_node.next = new_node
-        else:
-            while cur.next != self.head:
-                cur = cur.next
-            cur.next = new_node
-        self.head = new_node
 
     def append(self, data):
         if not self.head:
@@ -33,18 +21,66 @@ class CircularLinkedList:
             cur.next = new_node
             new_node.next = self.head
 
-    def print_list(self):
+    def prepend(self, data):
+        new_node = Node(data)
+        cur = self.head
+        new_node.next = self.head
+
+        if not self.head:
+            new_node.next = new_node
+        else:
+            while cur.next != self.head:
+                cur = cur.next
+            cur.next = new_node
+        self.head = new_node
+
+
+    def printList(self):
         #im not sure how to print this in the cool way cuz of the circular nature
         # A -> B -> C -> D -> E -> A -
         # |^                         |
         #  ---------------------------
-        cur = self.head
+        list = []
+        curr = self.head
 
-        while cur:
-            print(cur.data)
-            cur = cur.next
-            if cur == self.head:
+        while curr:
+            #print(curr.data)
+            list.append(curr.data)
+            curr = curr.next
+            if curr == self.head:
                 break
+        print(*list)
+
+    """def printList(self):
+        list = []
+        cur_node = self.head
+        while cur_node:
+            list.append(cur_node.data)
+            #print(cur_node.data)
+            cur_node = cur_node.next
+        print(*list)
+        #visual printing cuz it cool
+        print(str(list).replace(',', ' <- ').replace("[","").replace("]",""))"""
+    def remove(self, key):
+        if self.head:
+            if self.head.data == key:
+                cur = self.head 
+                while cur.next != self.head:
+                    cur = cur.next 
+                if self.head == self.head.next:
+                    self.head = None
+                else:
+                    cur.next = self.head.next
+                    self.head = self.head.next
+            else:
+                cur = self.head 
+                prev = None 
+                while cur.next != self.head:
+                    prev = cur 
+                    cur = cur.next
+                    if cur.data == key:
+                        prev.next = cur.next 
+                        cur = cur.next
 
 
 cllist = CircularLinkedList()
@@ -52,4 +88,7 @@ cllist.append("C")
 cllist.append("D")
 cllist.prepend("B")
 cllist.prepend("A")
-cllist.print_list()
+cllist.printList()
+
+cllist.remove("A")
+cllist.printList()
